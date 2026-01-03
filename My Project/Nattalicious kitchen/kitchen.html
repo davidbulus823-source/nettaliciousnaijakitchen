@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nettalicious Naija Kitchen</title>
+  <style>
+    :root {
+      --primary: #c0392b;
+      --secondary: #e67e22;
+      --bg: #fff8f2;
+      --dark: #2c2c2c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--dark);
+    }
+
+    header {
+      background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    header h1 { font-size: 3rem; }
+    header p { margin: 15px 0; font-size: 1.2rem; }
+
+    .btn {
+      background: var(--secondary);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform .3s, background .3s;
+    }
+
+    .btn:hover {
+      background: var(--primary);
+      transform: scale(1.05);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: white;
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: bold;
+    }
+
+    section { padding: 50px 20px; }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,.1);
+      overflow: hidden;
+      transition: transform .3s;
+    }
+
+    .card:hover { transform: translateY(-5px); }
+
+    .card img { width: 100%; height: 180px; object-fit: cover; }
+
+    .card-body { padding: 15px; }
+
+    .price { color: var(--primary); font-weight: bold; }
+
+    #cart-items div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    /* WhatsApp Button */
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,.3);
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#cart">Cart</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header id="home">
+    <h1>Nettalicious Naija Kitchen</h1>
+    <p>African & Intercontinental Dishes</p>
+    <button class="btn" onclick="document.getElementById('menu').scrollIntoView()">Order Now</button>
+  </header>
+
+  <section id="menu">
+    <h2>Our Menu</h2>
+    <div class="menu-grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1604908554161-3f0a4d0a1e5b" />
+        <div class="card-body">
+          <h3>Grilled Chicken</h3>
+          <p>Juicy grilled chicken with spices</p>
+          <span class="price">₦3,500</span><br /><br />
+          <button class="btn" onclick="addToCart('Grilled Chicken', 3500)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe" />
+        <div class="card-body">
+          <h3>Jollof Rice</h3>
+          <p>Classic Nigerian jollof rice</p>
+          <span class="price">₦2,000</span><br /><br />
+          <button class="btn" onclick="addToCart('Jollof Rice', 2000)">Add to Cart</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe" />
+        <div class="card-body">
+          <h3>Jollof Rice</h3>
+          <p>Classic Nigerian jollof rice</p>
+          <span class="price">₦2,000</span><br /><br />
+          <button class="btn" onclick="addToCart('Jollof Rice', 2000)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe" />
+        <div class="card-body">
+          <h3>Jollof Rice</h3>
+          <p>Classic Nigerian jollof rice</p>
+          <span class="price">₦2,000</span><br /><br />
+          <button class="btn" onclick="addToCart('Jollof Rice', 2000)">Add to Cart</button>
+        </div>
+        
+  </section>
+
+  <section id="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <h3>Total: ₦<span id="total">0</span></h3>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>📍 Nyanya-Karshi Road, Kurudu 900109, Federal Capital Territory, Nigeria</p>
+    <p>⏰ Mon - Sun: 9am - 10pm</p>
+    <p>📞 07079476937</p>
+  </section>
+
+  <footer>
+    <p>© 2026 Nettalicious Naija Kitchen</p>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/message/QHXGGKFW32ZAA1" target="_blank">💬</a>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      const item = cart.find(i => i.name === name);
+      if (item) item.qty++;
+      else cart.push({ name, price, qty: 1 });
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price * item.qty;
+        cartItems.innerHTML += `
+          <div>
+            <span>${item.name} (x${item.qty})</span>
+            <div>
+              <button onclick="changeQty(${index}, -1)">-</button>
+              <button onclick="changeQty(${index}, 1)">+</button>
+            </div>
+          </div>`;
+      });
+
+      document.getElementById('total').innerText = total;
+    }
+
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) cart.splice(index, 1);
+      renderCart();
+    }
+  </script>
+
+</body>
+</html>
